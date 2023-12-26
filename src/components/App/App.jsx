@@ -14,16 +14,6 @@ export const App = () => {
     setContacts(localContacts);
   }, []);
 
-  const addContact = newContact => {
-    const isOnList = contacts.find(contact => contact.name === newContact.name);
-
-    if (isOnList) {
-      window.alert(`${newContact.name} is already in contacts`);
-    } else {
-      setContacts(prevcontacts => [newContact, ...prevcontacts]);
-    }
-  };
-
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
@@ -46,7 +36,7 @@ export const App = () => {
   return (
     <div>
       <h1 className={css.mainTitle}>Phonebook</h1>
-      <ContactForm onSubmit={addContact}></ContactForm>
+      <ContactForm></ContactForm>
       <h2>Contacts</h2>
       <ContactFilter filter={filter} getFilter={addFilter}></ContactFilter>
       <ContactList
