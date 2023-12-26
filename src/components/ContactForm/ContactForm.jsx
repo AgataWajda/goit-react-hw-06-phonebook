@@ -1,22 +1,19 @@
 import { useDispatch } from 'react-redux';
-import { nanoid } from 'nanoid';
-import css from './ContactForm.module.css';
-import { addContact } from 'redux/contactsSlice';
 
+import css from './ContactForm.module.css';
+import { addContact } from '../../redux/contactsSlice';
 export const ContactForm = () => {
   const dispatch = useDispatch();
 
-  const onSubmit = e => {
-    e.preventDefault();
+  const onSubmit = event => {
+    event.preventDefault();
 
-    const newObj = {
-      id: nanoid(),
-      name: e.target.elements.name.value,
-      number: e.target.elements.number.value,
-    };
-    dispatch(addContact(newObj));
+    const name = event.target.elements.name.value;
+    const number = event.target.elements.number.value;
 
-    e.target.reset();
+    dispatch(addContact(name, number));
+
+    event.target.reset();
   };
 
   return (
